@@ -1,0 +1,22 @@
+{% extends "master.html" %}
+
+{% block content %}
+<main role="main" class="container mb-5">
+    <div class="row">
+        <div class="col-md-8 blog-main mt-3">
+            <h3 class="pb-4 mb-4 font-italic border-bottom">
+                BLOG DE PRUEBA
+            </h3>
+            {% for post in posts %}
+            <div class="blog-post">
+                <h2 class="blog-post-title"><a href="/post/{{ post.id }}">{{ post.title }}</a></h2>
+                <p class="blog-post-meta">{{post.fecha_reg}}</p>
+                {{post.text}}
+            </div><!-- /.blog-post -->
+            {% endfor %}
+        </div><!-- /.blog-main -->
+
+    </div><!-- /.row -->
+
+</main><!-- /.container -->
+{% endblock %}
