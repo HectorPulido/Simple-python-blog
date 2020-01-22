@@ -1,5 +1,7 @@
 from flask import Flask, render_template, redirect, url_for,request
 from Class import BlogPost
+import os
+
 
 app = Flask(__name__)
 
@@ -32,4 +34,6 @@ def createPost():
         return redirect(url_for('index'))
     return render_template('createPost.html')
 
-app.run(host= '0.0.0.0')
+if __name__ == "__main__":
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host= '0.0.0.0', port=port)

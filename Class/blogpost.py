@@ -2,7 +2,7 @@ from .database import Database
 
 class BlogPost(Database):
     def getAllPosts(self):
-        return self.select("SELECT * FROM blog_post WHERE active = 1")
+        return self.select("SELECT * FROM blog_post WHERE active = 1", ())
     def getPost(self, id):
         return self.select("SELECT * FROM blog_post WHERE `id` = %s", (id,))
     def createPost(self, title, text):

@@ -1,10 +1,11 @@
+import os
 import mysql.connector
 
 class Database:
     def __init__(self):
-        host = "localhost"
+        host = os.environ.get("db_host", "10.10.1.54")
         user = "root"
-        password = ""
+        password = os.environ.get("db_password", "")
         db = "blogtest"
 
         self.con = mysql.connector.connect(
@@ -23,6 +24,6 @@ class Database:
     def select(self, query, values):
         mycursor = self.con.cursor()
         mycursor.execute(query, values)
-        return mycursor.fetchall()
+        return [ dict(line) for line in [zip([ column[0] for column in mycursor.description], row) for row in mycursor.fetchall()] ]
         
         
